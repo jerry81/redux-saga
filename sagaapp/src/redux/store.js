@@ -1,5 +1,5 @@
 
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 
 const initialState = {
   /* not exported */
@@ -29,4 +29,4 @@ const counter = function(state = initialState, action) {
   }
 };
 
-export default createStore(counter)
+export default createStore(combineReducers({ counter }))
