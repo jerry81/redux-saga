@@ -1,22 +1,25 @@
 import React from "react";
 import { connect } from "react-redux"; // connect api
 
-export default function UserComponent(props) {
-  function increment() {
-      console.log('increment')
-  }
-  function decrement() {
-      console.log('decrement')
-  }
+function UserComponent({count, increment, decrement}) {
   return (
     <div>
       i am the user component
       <div>
         Basic Counter
-        <div>currentCount</div>
+        <div>{count}</div>
         <button onClick={() => { increment() }}>+</button>
         <button onClick={() => { decrement() }}>-</button>
       </div>
     </div>
   );
 }
+
+export default connect(store => ({
+    count: _ => store.counter.count
+  }), { increment: _ => ({
+      type: 'INC',
+  }), decrement: _ => ({
+      type: 'DEC'
+  })  } /* mapStateToProps */)(UserComponent);
+  

@@ -28,6 +28,12 @@ const store = createStore(reducer, applyMiddleware(sagaMiddleware))
 
 sagaMiddleware.run(saga)
 
+### troubleshooting
+
+redux: TypeError: Cannot read property 'getState' of undefined
+cause: put store={store} in <App>
+solution: put store={store} in <Provider>
+
 ### defs
 
 side effect - a fn that modifies anything outside of body 
