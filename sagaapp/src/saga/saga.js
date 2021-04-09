@@ -9,7 +9,7 @@ function* helloSaga() {
 
 function* incrementAsync() {
   yield delay(1000)
-  yield put({ type: 'INC' })
+  yield put({ type: 'INC' }) // dispatch action
 }
 
 function* watchIncrementAsync() {
@@ -17,7 +17,7 @@ function* watchIncrementAsync() {
 }
 
 function* decrement() {
-    yield put({ type: 'DEC' })
+    yield put({ type: 'DEC' }) // dispatch an action
   }
   
   function* watchDecrementAsync() {
