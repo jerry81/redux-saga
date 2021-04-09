@@ -1,5 +1,8 @@
+import { createStore, combineReducers, applyMiddleware } from "redux";
 
-import { createStore, combineReducers } from "redux";
+// saga imports
+import createSagaMiddleware from "redux-saga";
+import rootSaga from "../saga/saga";
 
 const initialState = {
   /* not exported */
@@ -29,4 +32,13 @@ const counter = function(state = initialState, action) {
   }
 };
 
-export default createStore(combineReducers({ counter }))
+const sagaMiddleware = createSagaMiddleware()
+
+// wire up 
+export const store = createStore(
+  combineReducers({ counter }),
+  applyMiddleware(sagaMiddleware)
+);
+sagaMiddleware.run(rootSaga);
+
+export const action = type => store.dispatch({ type });

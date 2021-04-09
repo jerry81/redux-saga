@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux"; // connect api
+// import { action } from "../redux/store";
 
-function UserComponent({ count, increment, decrement }) {
+function UserComponent({ count, increment, decrement, hello }) {
   console.log("count", count);
   return (
     <div>
@@ -11,6 +12,7 @@ function UserComponent({ count, increment, decrement }) {
         <div>{count}</div>
         <button
           onClick={() => {
+            // action("INCREMENT_ASYNC");
             increment();
           }}
         >
@@ -18,6 +20,7 @@ function UserComponent({ count, increment, decrement }) {
         </button>
         <button
           onClick={() => {
+            // action("DECREMENT_SYNC");
             decrement();
           }}
         >
@@ -33,11 +36,9 @@ export default connect(
     count: store.counter.count
   }),
   {
-    increment: _ => ({
-      type: "INC"
-    }),
+    increment: _ => ({ type: "INCREMENT_ASYNC" }),
     decrement: _ => ({
-      type: "DEC"
+      type: "DECREMENT_SYNC"
     })
   } /* mapStateToProps */
 )(UserComponent);
